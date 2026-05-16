@@ -1956,22 +1956,10 @@ section.discography {
   width: fit-content;
 }
 .release .links a::before {
-  content: '';
-  width: 10px;
-  height: 10px;
-  flex-shrink: 0;
-  display: inline-block;
-  background: currentColor;
+  content: '▸';
+  margin-right: 4px;
+  font-size: 10px;
   opacity: 0.6;
-}
-.release .links a[href*="bandcamp"]::before {
-  clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
-}
-.release .links a[href*="spotify"]::before {
-  border-radius: 50%;
-}
-.release .links a[href*="apple"]::before {
-  border-radius: 2px;
 }
 .release .links a:hover {
   color: var(--ochre-deep);
