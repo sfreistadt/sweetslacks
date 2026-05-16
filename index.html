@@ -5,6 +5,7 @@
 <title>Sweet Slacks — A Place That We Call Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>/* cyrillic-ext */
 @font-face {
   font-family: 'Cormorant';
@@ -1950,20 +1951,23 @@ section.discography {
 .release .links a {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   border-bottom: 1px solid var(--ink-mute);
   padding-bottom: 1px;
   width: fit-content;
 }
-.release .links a::before {
-  content: '▸';
-  margin-right: 4px;
-  font-size: 10px;
-  opacity: 0.6;
+.release .links a i {
+  width: 16px;
+  font-size: 16px;
+  text-align: center;
+  opacity: 0.7;
 }
 .release .links a:hover {
   color: var(--ochre-deep);
   border-color: var(--ochre-deep);
+}
+.release .links a:hover i {
+  opacity: 1;
 }
 
 /* ─────────────────────────────────────────────────────── venues */
@@ -2292,7 +2296,10 @@ footer::before {
     <li><a href="#discography">Discography</a></li>
     <li><a href="#venues">Shows</a></li>
     <li><a href="#media">Media</a></li>
-    <li><a href="https://sweetslacks.bandcamp.com" target="_blank" rel="noopener">Bandcamp ↗</a></li>
+    <li><a href="https://sweetslacks.bandcamp.com" target="_blank" rel="noopener">
+      <i class="fa-brands fa-bandcamp" style="font-size:14px;opacity:0.7;margin-right:5px;"></i>
+      Bandcamp
+    </a></li>
   </ul>
 </nav>
 
@@ -2367,7 +2374,7 @@ footer::before {
         <h4>Cold Fantasy</h4>
         <p class="desc">The opener. A slow build that breaks open at the bridge — the closest thing to a thesis statement on the record.</p>
         <div class="wave" aria-hidden="true"></div>
-        <div class="foot"><span>Side A · Opener</span><span>Bandcamp ↗</span></div>
+        <div class="foot"><span>Side A · Opener</span><span><i class="fa-brands fa-bandcamp" style="font-size:11px;opacity:0.7;margin-right:4px;"></i>Bandcamp</span></div>
       </a>
 
       <a class="hl-card" href="https://sweetslacks.bandcamp.com/track/bruxist" target="_blank" rel="noopener" data-track="A3">
@@ -2376,7 +2383,7 @@ footer::before {
         <h4>Bruxist</h4>
         <p class="desc">The single. Released ahead of the LP. A jaw-clench of a song — fuzz pedal pinned, two voices in unison, no chorus.</p>
         <div class="wave" aria-hidden="true"></div>
-        <div class="foot"><span>Single · 2024</span><span>Bandcamp ↗</span></div>
+        <div class="foot"><span>Single · 2024</span><span><i class="fa-brands fa-bandcamp" style="font-size:11px;opacity:0.7;margin-right:4px;"></i>Bandcamp</span></div>
       </a>
 
       <a class="hl-card" href="https://sweetslacks.bandcamp.com/track/cruise-control" target="_blank" rel="noopener" data-track="B3">
@@ -2385,7 +2392,7 @@ footer::before {
         <h4>Cruise Control</h4>
         <p class="desc">Tomás Garcia on drums. The widest song on the record — late-summer chord changes and a guitar solo that wanders off and never quite comes back.</p>
         <div class="wave" aria-hidden="true"></div>
-        <div class="foot"><span>Side B · Featured</span><span>Bandcamp ↗</span></div>
+        <div class="foot"><span>Side B · Featured</span><span><i class="fa-brands fa-bandcamp" style="font-size:11px;opacity:0.7;margin-right:4px;"></i>Bandcamp</span></div>
       </a>
     </div>
   </div>
@@ -2414,7 +2421,7 @@ footer::before {
     </div>
 
     <div class="live-foot">
-      <div class="quote">“Who do you know in the band? I just was walking by and it sounded good." - Random Dude</div>
+      <div class="quote">“Who do you know in the band? I just was walking by and it sounded great." - Random Dude</div>
       <a class="btn ghost" style="border-color: rgba(243,217,183,0.5); color: #F3D9B7;" href="#venues">See where we've played →</a>
     </div>
   </div>
@@ -2457,9 +2464,18 @@ footer::before {
           </div>
         </a>
         <div class="links">
-          <a href="https://sweetslacks.bandcamp.com/album/a-place-that-we-call-home" target="_blank" rel="noopener">Bandcamp ↗</a>
-          <a href="https://open.spotify.com/album/5B2N8BWyQe5mK8TLjpl9vL" target="_blank" rel="noopener">Spotify ↗</a>
-          <a href="https://music.apple.com/us/album/a-place-that-we-call-home/1851715721" target="_blank" rel="noopener">Apple ↗</a>
+          <a href="https://sweetslacks.bandcamp.com/album/a-place-that-we-call-home" target="_blank" rel="noopener">
+            <i class="fa-brands fa-bandcamp"></i>
+            Bandcamp
+          </a>
+          <a href="https://open.spotify.com/album/5B2N8BWyQe5mK8TLjpl9vL" target="_blank" rel="noopener">
+            <i class="fa-brands fa-spotify"></i>
+            Spotify
+          </a>
+          <a href="https://music.apple.com/us/album/a-place-that-we-call-home/1851715721" target="_blank" rel="noopener">
+            <i class="fa-brands fa-apple"></i>
+            Apple
+          </a>
         </div>
       </div>
 
@@ -2478,13 +2494,22 @@ footer::before {
               <div class="name">Strays</div>
               <span class="cat">Album</span>
             </div>
-            <span class="year">2024</span>
+            <span class="year">2020</span>
           </div>
         </a>
         <div class="links">
-          <a href="https://sweetslacks.bandcamp.com/album/strays" target="_blank" rel="noopener">Bandcamp ↗</a>
-          <a href="https://open.spotify.com/album/1LrQ3WuYc4siqn3Qv8UZey" target="_blank" rel="noopener">Spotify ↗</a>
-          <a href="https://music.apple.com/us/album/strays-ep/1533796326" target="_blank" rel="noopener">Apple ↗</a>
+          <a href="https://sweetslacks.bandcamp.com/album/strays" target="_blank" rel="noopener">
+            <i class="fa-brands fa-bandcamp"></i>
+            Bandcamp
+          </a>
+          <a href="https://open.spotify.com/album/1LrQ3WuYc4siqn3Qv8UZey" target="_blank" rel="noopener">
+            <i class="fa-brands fa-spotify"></i>
+            Spotify
+          </a>
+          <a href="https://music.apple.com/us/album/strays-ep/1533796326" target="_blank" rel="noopener">
+            <i class="fa-brands fa-apple"></i>
+            Apple
+          </a>
         </div>
       </div>
 
@@ -2503,13 +2528,22 @@ footer::before {
               <div class="name">Never in the Now</div>
               <span class="cat">Album</span>
             </div>
-            <span class="year">2023</span>
+            <span class="year">2019</span>
           </div>
         </a>
         <div class="links">
-          <a href="https://sweetslacks.bandcamp.com/album/never-in-the-now" target="_blank" rel="noopener">Bandcamp ↗</a>
-          <a href="https://open.spotify.com/album/4aPZJzDPzyVZQJNaT5toWY" target="_blank" rel="noopener">Spotify ↗</a>
-          <a href="https://music.apple.com/us/album/never-in-the-now-ep/1478169440" target="_blank" rel="noopener">Apple ↗</a>
+          <a href="https://sweetslacks.bandcamp.com/album/never-in-the-now" target="_blank" rel="noopener">
+            <i class="fa-brands fa-bandcamp"></i>
+            Bandcamp
+          </a>
+          <a href="https://open.spotify.com/album/4aPZJzDPzyVZQJNaT5toWY" target="_blank" rel="noopener">
+            <i class="fa-brands fa-spotify"></i>
+            Spotify
+          </a>
+          <a href="https://music.apple.com/us/album/never-in-the-now-ep/1478169440" target="_blank" rel="noopener">
+            <i class="fa-brands fa-apple"></i>
+            Apple
+          </a>
         </div>
       </div>
 
@@ -2528,13 +2562,22 @@ footer::before {
               <div class="name">Fever Breaks EP</div>
               <span class="cat">EP</span>
             </div>
-            <span class="year">2023</span>
+            <span class="year">2019</span>
           </div>
         </a>
         <div class="links">
-          <a href="https://sweetslacks.bandcamp.com/album/fever-breaks-ep" target="_blank" rel="noopener">Bandcamp ↗</a>
-          <a href="https://open.spotify.com/album/1fzIr4n6h6BHDqQqZ0HVOR" target="_blank" rel="noopener">Spotify ↗</a>
-          <a href="https://music.apple.com/us/album/fever-breaks-ep/1478176660" target="_blank" rel="noopener">Apple ↗</a>
+          <a href="https://sweetslacks.bandcamp.com/album/fever-breaks-ep" target="_blank" rel="noopener">
+            <i class="fa-brands fa-bandcamp"></i>
+            Bandcamp
+          </a>
+          <a href="https://open.spotify.com/album/1fzIr4n6h6BHDqQqZ0HVOR" target="_blank" rel="noopener">
+            <i class="fa-brands fa-spotify"></i>
+            Spotify
+          </a>
+          <a href="https://music.apple.com/us/album/fever-breaks-ep/1478176660" target="_blank" rel="noopener">
+            <i class="fa-brands fa-apple"></i>
+            Apple
+          </a>
         </div>
       </div>
 
@@ -2616,10 +2659,22 @@ footer::before {
     <div class="foot-col">
       <h6>Listen</h6>
       <ul>
-        <li><a href="https://sweetslacks.bandcamp.com" target="_blank" rel="noopener">Bandcamp ↗</a></li>
-        <li><a href="https://open.spotify.com/artist/0gK1F26XdJu1FGxEdkYEDO" target="_blank" rel="noopener">Spotify ↗</a></li>
-        <li><a href="https://music.apple.com/us/artist/sweet-slacks/1477784458" target="_blank" rel="noopener">Apple Music ↗</a></li>
-        <li><a href="#" target="_blank" rel="noopener">YouTube ↗</a></li>
+        <li><a href="https://sweetslacks.bandcamp.com" target="_blank" rel="noopener">
+          <i class="fa-brands fa-bandcamp" style="width:14px;font-size:14px;opacity:0.7;margin-right:6px;"></i>
+          Bandcamp
+        </a></li>
+        <li><a href="https://open.spotify.com/artist/0gK1F26XdJu1FGxEdkYEDO" target="_blank" rel="noopener">
+          <i class="fa-brands fa-spotify" style="width:14px;font-size:14px;opacity:0.7;margin-right:6px;"></i>
+          Spotify
+        </a></li>
+        <li><a href="https://music.apple.com/us/artist/sweet-slacks/1477784458" target="_blank" rel="noopener">
+          <i class="fa-brands fa-apple" style="width:14px;font-size:14px;opacity:0.7;margin-right:6px;"></i>
+          Apple Music
+        </a></li>
+        <li><a href="#" target="_blank" rel="noopener">
+          <i class="fa-brands fa-youtube" style="width:14px;font-size:14px;opacity:0.7;margin-right:6px;"></i>
+          YouTube
+        </a></li>
       </ul>
     </div>
     <div class="foot-col">
