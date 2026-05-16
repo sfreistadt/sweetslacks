@@ -2002,6 +2002,59 @@ section.venues {
   color: var(--ink-mute);
 }
 
+/* ─────────────────────────────────────────────────────── media */
+section.media {
+  padding: 100px 40px 140px;
+  position: relative;
+  background: var(--bg-deep);
+}
+.media-inner { max-width: 1180px; margin: 0 auto; }
+.media-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+}
+.media-item {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.media-item .date {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ochre-deep);
+}
+.media-item .content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.media-item .title {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--ink);
+  line-height: 1.1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.media-item a.title:hover {
+  color: var(--ochre-deep);
+}
+.media-item .publication {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+}
+
 /* ─────────────────────────────────────────────────────── footer */
 footer {
   padding: 60px 40px 36px;
@@ -2268,6 +2321,7 @@ footer::before {
   .g-a, .g-b, .g-c, .g-d, .g-e { grid-column: span 6; grid-row: span 4; }
   .disco-grid { grid-template-columns: 1fr; }
   .venue-list { grid-template-columns: 1fr; column-gap: 0; }
+  .media-list { grid-template-columns: 1fr; column-gap: 0; }
   .foot-inner { grid-template-columns: 1fr; }
   .record-credits { grid-template-columns: 1fr; }
   nav.top ul { display: none; }
@@ -2318,6 +2372,7 @@ footer::before {
     <li><a href="#live">Live</a></li>
     <li><a href="#discography">Discography</a></li>
     <li><a href="#venues">Shows</a></li>
+    <li><a href="#media">Media</a></li>
     <li><a href="https://sweetslacks.bandcamp.com" target="_blank" rel="noopener">Bandcamp ↗</a></li>
   </ul>
 </nav>
@@ -2583,6 +2638,39 @@ footer::before {
       <div class="venue"><span class="date">2024·03</span><span class="place">13th Floor<small>SXSW unofficial</small></span><span class="city">Austin TX</span></div>
       <div class="venue"><span class="date">2024·02</span><span class="place">Valhalla<small>Pre-mastering tour</small></span><span class="city">Austin TX</span></div>
       <div class="venue"><span class="date">2023·11</span><span class="place">Far Out Lounge<small>Old Friend EP release</small></span><span class="city">Austin TX</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── media -->
+<section class="media" id="media">
+  <div class="media-inner">
+    <div class="section-head">
+      <div class="left">
+        <span class="section-num">§ 05 — In the Media</span>
+        <h3>What <em>people are saying</em> about the music.</h3>
+      </div>
+      <div class="right">
+        Press coverage, reviews, and features from around the web.
+      </div>
+    </div>
+
+    <div class="media-list">
+      <div class="media-item">
+        <span class="date">2024·07</span>
+        <div class="content">
+          <a class="title" href="https://kutkutx.studio/song-of-the-day/sweet-slacks-scratch-off" target="_blank" rel="noopener">Song of the Day: 'Scratch Off' [PREMIERE]</a>
+          <span class="publication">KUTX</span>
+        </div>
+      </div>
+
+      <div class="media-item">
+        <span class="date">2022·08</span>
+        <div class="content">
+          <a class="title" href="https://kutx.org/song-of-the-day/sweet-slacks-cruise-control/" target="_blank" rel="noopener">Song of the Day: 'Cruise Control'</a>
+          <span class="publication">KUTX</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
