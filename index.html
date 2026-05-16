@@ -1100,8 +1100,7 @@
 // Tweakable defaults — see Tweaks panel
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "bruxist",
-  "grain": true,
-  "showStickyPlayer": true
+  "grain": true
 }/*EDITMODE-END*/;
 </script>
 
@@ -2128,102 +2127,6 @@ footer::before {
   position: relative;
 }
 
-/* ─────────────────────────────────────────────────────── sticky player */
-.sticky-player {
-  position: fixed;
-  left: 50%;
-  bottom: 22px;
-  transform: translateX(-50%);
-  z-index: 60;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 14px 10px 12px;
-  background: var(--ink);
-  color: #F3D9B7;
-  border: 1px solid rgba(243,217,183,0.18);
-  box-shadow: 0 14px 40px -14px rgba(0,0,0,0.5);
-  max-width: 92vw;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.sticky-player.hidden { transform: translate(-50%, 120%); opacity: 0; pointer-events: none; }
-.sticky-player .sp-art {
-  width: 42px; height: 42px;
-  background: var(--bg) var(--paper-url) center/cover;
-  position: relative;
-  flex-shrink: 0;
-}
-.sticky-player .sp-art img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
-.sticky-player .sp-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.sticky-player .sp-text .t {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.1;
-  color: #F3D9B7;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.sticky-player .sp-text .s {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  color: #C7B79F;
-  text-transform: uppercase;
-}
-.sticky-player .sp-btns {
-  display: flex;
-  gap: 4px;
-  margin-left: 8px;
-}
-.sticky-player button {
-  background: none;
-  border: none;
-  color: #F3D9B7;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s;
-}
-.sticky-player button:hover { background: rgba(243,217,183,0.12); }
-.sticky-player button.play {
-  background: var(--blush);
-  color: var(--ink);
-}
-.sticky-player button.play:hover { background: #F3D9B7; }
-.sticky-player .sp-progress {
-  position: absolute;
-  left: 0; right: 0; top: -1px;
-  height: 2px;
-  background: rgba(243,217,183,0.15);
-  overflow: hidden;
-}
-.sticky-player .sp-progress .bar {
-  height: 100%;
-  background: var(--blush);
-  width: 34%;
-  transition: width 0.4s;
-}
-.sticky-player .sp-bandcamp {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  color: var(--blush);
-  text-transform: uppercase;
-  border-left: 1px solid rgba(243,217,183,0.18);
-  padding-left: 14px;
-  margin-left: 6px;
-}
-
 /* ─────────────────────────────────────────────────────── tweaks panel */
 .tweaks {
   position: fixed;
@@ -2707,21 +2610,6 @@ footer::before {
   </div>
 </footer>
 
-<!-- ─────────────────── sticky now-playing -->
-<div class="sticky-player" id="sp">
-  <div class="sp-progress"><div class="bar"></div></div>
-  <div class="sp-art"><img src="images/bb1998b9-d854-4adf-a9de-221b8c6ad0e4.png" alt=""></div>
-  <div class="sp-text">
-    <span class="t" id="sp-title">Bruxist</span>
-    <span class="s">Sweet Slacks · A Place That We Call Home</span>
-  </div>
-  <div class="sp-btns">
-    <button title="prev" id="sp-prev"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zM9.5 12l9.5-6v12z"></path></svg></button>
-    <button class="play" title="play" id="sp-play"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"></path></svg></button>
-    <button title="next" id="sp-next"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM5 18l9.5-6L5 6z"></path></svg></button>
-  </div>
-  <a class="sp-bandcamp" href="https://sweetslacks.bandcamp.com" target="_blank" rel="noopener">Bandcamp ↗</a>
-</div>
 
 <!-- ─────────────────── tweaks panel -->
 <div class="tweaks" id="tweaks">
@@ -2736,9 +2624,6 @@ footer::before {
   </div>
   <div class="field">
     <label class="toggle" id="tw-grain"><span class="lbl">Paper grain</span><span class="sw-pill"></span></label>
-  </div>
-  <div class="field">
-    <label class="toggle" id="tw-player"><span class="lbl">Sticky now-playing</span><span class="sw-pill"></span></label>
   </div>
 </div>
 
@@ -2757,30 +2642,6 @@ footer::before {
 })();
 </script>
 
-<!-- sticky player rotation -->
-<script>
-(function(){
-  const titles = ['Cold Fantasy', 'Bruxist', 'Cruise Control', 'Heatwave', 'Lost Frame', 'Old Friend'];
-  let i = 1;
-  const t = document.getElementById('sp-title');
-  const bar = document.querySelector('.sticky-player .bar');
-  let pct = 34;
-  setInterval(() => {
-    pct = (pct + 1.6) % 100;
-    bar.style.width = pct + '%';
-  }, 220);
-  const play = document.getElementById('sp-play');
-  let playing = true;
-  play.addEventListener('click', () => {
-    playing = !playing;
-    play.innerHTML = playing
-      ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>'
-      : '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>';
-  });
-  document.getElementById('sp-prev').addEventListener('click', () => { i = (i - 1 + titles.length) % titles.length; t.textContent = titles[i]; });
-  document.getElementById('sp-next').addEventListener('click', () => { i = (i + 1) % titles.length; t.textContent = titles[i]; });
-})();
-</script>
 
 <!-- Tweaks panel + edit-mode protocol -->
 <script>
@@ -2790,12 +2651,10 @@ footer::before {
   const apply = () => {
     document.documentElement.setAttribute('data-palette', state.palette);
     document.body.setAttribute('data-grain', state.grain ? 'on' : 'off');
-    document.getElementById('sp').classList.toggle('hidden', !state.showStickyPlayer);
 
     // sync UI
     panel.querySelectorAll('.sw').forEach(b => b.classList.toggle('active', b.dataset.v === state.palette));
     document.getElementById('tw-grain').classList.toggle('on', state.grain);
-    document.getElementById('tw-player').classList.toggle('on', state.showStickyPlayer);
   };
   const persist = (edits) => {
     Object.assign(state, edits);
@@ -2809,10 +2668,6 @@ footer::before {
   document.getElementById('tw-grain').addEventListener('click', e => {
     e.preventDefault();
     persist({ grain: !state.grain });
-  });
-  document.getElementById('tw-player').addEventListener('click', e => {
-    e.preventDefault();
-    persist({ showStickyPlayer: !state.showStickyPlayer });
   });
 
   document.getElementById('tw-close').addEventListener('click', () => {
