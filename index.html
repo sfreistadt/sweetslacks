@@ -2326,10 +2326,9 @@ footer::before {
   section.hero { padding: 40px 24px 80px; }
   .hero-inner { gap: 32px; }
   .specs { grid-template-columns: 1fr; gap: 16px; }
-  .gallery { grid-template-columns: repeat(2, 1fr); }
-  .g-a, .g-b, .g-c, .g-d { grid-column: span 1; }
-  .g-e { grid-column: span 2; }
-  .disco-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .gallery { grid-template-columns: 1fr; max-width: 100%; }
+  .g-a, .g-b, .g-c, .g-d, .g-e { grid-column: span 1; width: 100%; }
+  .disco-grid { grid-template-columns: 1fr; gap: 32px; }
   section { padding: 60px 24px; }
   h1 { font-size: 2.5rem; }
   h2 { font-size: 2rem; }
@@ -2342,9 +2341,8 @@ footer::before {
   body { font-size: 16px; }
   section.hero { padding: 24px 16px 60px; }
   .hero-inner { gap: 24px; }
-  .gallery { grid-template-columns: repeat(2, 1fr); }
-  .g-a, .g-b, .g-c, .g-d { grid-column: span 1; }
-  .g-e { grid-column: span 2; }
+  .gallery { grid-template-columns: 1fr; max-width: 100%; }
+  .g-a, .g-b, .g-c, .g-d, .g-e { grid-column: span 1; width: 100%; }
   section { padding: 48px 16px; }
   h1 { font-size: 2rem; }
   h2 { font-size: 1.75rem; }
@@ -2506,7 +2504,7 @@ footer::before {
     <div class="section-head">
       <div class="left">
         <span class="section-num">§ 03 — Discography</span>
-        <h3>The full <em>catalog,</em> oldest at the right.</h3>
+        <h3>The full <em>catalog,</em> newest to oldest.</h3>
       </div>
       <div class="right">
         Everything we've released. All of it lives on Bandcamp, name-your-price
