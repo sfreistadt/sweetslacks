@@ -1104,7 +1104,7 @@
 <script>
 // Tweakable defaults — see Tweaks panel
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "palette": "bruxist",
+  "palette": "smoke",
   "grain": true
 }/*EDITMODE-END*/;
 </script>
@@ -1112,47 +1112,61 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <style>
 /* ─────────────────────────────────────────────────────── tokens */
 :root {
-  /* parchment (default) */
-  --bg: #E1D2BF;
-  --bg-deep: #D5C2A8;
-  --bg-card: #EADBC4;
-  --ink: #0E1C25;
-  --ink-2: #1F3B44;
-  --ink-mute: #4F4A3F;
-  --ochre: #A07442;
-  --ochre-deep: #855733;
-  --gold: #B6A256;
-  --blush: #E89A9A;
-  --rule: rgba(14,28,37,0.18);
-  --rule-soft: rgba(14,28,37,0.10);
-  --paper-url: url("images/a80240bf-e5ac-4d69-a356-421315ba1825.jpg");
+  /* SMOKE — deep warm black, cream, muted copper */
+  --bg: #15100E;
+  --bg-deep: #0C0908;
+  --bg-card: #1E1714;
+  --bg-paper: #251D19;
+  --ink: #E8DCC3;
+  --ink-2: #D4C39E;
+  --ink-mute: #8A7960;
+  --accent: oklch(0.68 0.10 50);
+  --accent-deep: oklch(0.55 0.13 45);
+  --accent-soft: oklch(0.80 0.06 55);
+  /* old names kept aliased for the rest of the site */
+  --ochre: var(--accent);
+  --ochre-deep: var(--accent-deep);
+  --gold: var(--accent-soft);
+  --blush: var(--accent);
+  --rule: rgba(232,220,195,0.18);
+  --rule-soft: rgba(232,220,195,0.09);
+  --paper-url: url("assets/paper.png");
 }
-:root[data-palette="midnight"] {
-  --bg: #0E1C25;
-  --bg-deep: #061B2A;
-  --bg-card: #15303B;
-  --ink: #F3D9B7;
-  --ink-2: #E1D2BF;
-  --ink-mute: #B7A78F;
-  --ochre: #E7B166;
-  --ochre-deep: #B6A256;
-  --blush: #FB3199;
-  --rule: rgba(243,217,183,0.22);
-  --rule-soft: rgba(243,217,183,0.10);
+:root[data-palette="parchment"] {
+  --bg: #EFE3CB;
+  --bg-deep: #E2D2B2;
+  --bg-card: #F4E8D1;
+  --bg-paper: #F8EED9;
+  --ink: #1A120E;
+  --ink-2: #2A1E16;
+  --ink-mute: #6F5A47;
+  --accent: oklch(0.50 0.12 40);
+  --accent-deep: oklch(0.40 0.13 35);
+  --accent-soft: oklch(0.65 0.10 45);
+  --ochre: var(--accent);
+  --ochre-deep: var(--accent-deep);
+  --gold: var(--accent-soft);
+  --blush: var(--accent);
+  --rule: rgba(26,18,14,0.22);
+  --rule-soft: rgba(26,18,14,0.10);
 }
-:root[data-palette="bruxist"] {
-  /* a hotter cut — bruxist single energy */
-  --bg: #F3D9B7;
-  --bg-deep: #E7B166;
-  --bg-card: #FBE7C7;
-  --ink: #322B2E;
-  --ink-2: #471F26;
-  --ink-mute: #79513E;
-  --ochre: #B6624A;
-  --ochre-deep: #6E2B22;
-  --blush: #FB3199;
-  --rule: rgba(50,43,46,0.22);
-  --rule-soft: rgba(50,43,46,0.10);
+:root[data-palette="fog"] {
+  --bg: #161B1F;
+  --bg-deep: #0B0F12;
+  --bg-card: #1E252A;
+  --bg-paper: #232A30;
+  --ink: #E6E7DF;
+  --ink-2: #C8CAC0;
+  --ink-mute: #7A8086;
+  --accent: oklch(0.72 0.06 80);
+  --accent-deep: oklch(0.58 0.08 75);
+  --accent-soft: oklch(0.82 0.04 90);
+  --ochre: var(--accent);
+  --ochre-deep: var(--accent-deep);
+  --gold: var(--accent-soft);
+  --blush: var(--accent);
+  --rule: rgba(230,231,223,0.18);
+  --rule-soft: rgba(230,231,223,0.09);
 }
 
 * { box-sizing: border-box; }
@@ -1213,41 +1227,47 @@ a:hover { color: var(--ochre-deep); }
 
 /* ─────────────────────────────────────────────────────── nav */
 nav.top {
-  position: sticky;
-  top: 0;
+  position: absolute;
+  top: 0; left: 0; right: 0;
   z-index: 50;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  padding: 22px 40px 18px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  padding: 26px 36px;
+  color: var(--ink);
+}
+nav.top.scrolled {
+  position: fixed;
+  background: color-mix(in oklab, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--rule-soft);
+  padding: 16px 36px;
+  transition: padding 0.2s;
 }
 nav.top .brand {
   font-family: "Ibarra Real Nova", "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 700;
   font-size: 22px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   color: var(--ink);
 }
-nav.top .brand .small {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  color: var(--ochre-deep);
+nav.top .brand .by {
+  font-family: "IBM Plex Mono", monospace;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  color: var(--accent-soft);
   text-transform: uppercase;
   display: block;
-  margin-top: -2px;
+  margin-top: 2px;
 }
 nav.top ul {
   list-style: none;
   display: flex;
-  gap: 32px;
+  gap: 30px;
   margin: 0;
   padding: 0;
 }
@@ -1257,140 +1277,167 @@ nav.top ul a {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink);
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-  transition: border-color 0.2s, color 0.2s;
+  padding: 4px 0;
+  position: relative;
+  transition: color 0.15s;
 }
-nav.top ul a:hover { border-color: var(--ochre); color: var(--ochre-deep); }
+nav.top ul a:hover { color: var(--accent-soft); }
+nav.top ul a.bc { color: var(--accent-soft); }
 
-/* ─────────────────────────────────────────────────────── hero */
+/* ─────────────────────────────────────────────────────── hero — full-bleed photo */
 section.hero {
-  padding: 60px 40px 120px;
   position: relative;
-}
-.hero-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0,1.05fr) minmax(0,1fr);
-  gap: 80px;
-  align-items: center;
-}
-.hero-art {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  background: var(--bg-deep) var(--paper-url) center/cover;
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.4) inset,
-    0 30px 60px -20px rgba(14,28,37,0.35),
-    0 2px 0 rgba(14,28,37,0.06);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  background: var(--bg-deep);
   overflow: hidden;
 }
-.hero-art::after {
-  /* corner foxing */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05) saturate(0.75) brightness(0.75);
+}
+.hero-photo::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 0% 0%, rgba(133,87,51,0.18), transparent 35%),
-    radial-gradient(circle at 100% 100%, rgba(14,28,37,0.10), transparent 40%);
+    linear-gradient(180deg,
+      rgba(21,16,14,0.55) 0%,
+      rgba(21,16,14,0.20) 30%,
+      rgba(21,16,14,0.10) 55%,
+      rgba(21,16,14,0.85) 85%,
+      rgba(21,16,14,1) 100%),
+    radial-gradient(circle at 60% 30%, rgba(232,176,108,0.10), transparent 50%);
   mix-blend-mode: multiply;
-  pointer-events: none;
 }
-.hero-art img.cover {
+.hero-photo .grain {
   position: absolute;
   inset: 0;
+  background-image: var(--paper-url);
+  background-size: 800px;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  mix-blend-mode: multiply;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
 }
-.hero-art .meta {
-  position: absolute;
-  top: 28px;
-  right: 30px;
-  text-align: right;
-  z-index: 2;
-}
-.hero-art .meta h1 {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: clamp(18px, 1.6vw, 26px);
-  letter-spacing: 0.23em;
-  color: var(--ink-2);
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1;
-}
-.hero-art .meta .by {
-  font-family: "Ibarra Real Nova", serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: clamp(20px, 1.8vw, 28px);
-  color: var(--ochre-deep);
-  letter-spacing: 0.04em;
-  margin-top: 14px;
-  display: block;
-  line-height: 1;
-}
-.hero-art .vinyl-tab {
-  position: absolute;
-  left: -1px;
-  bottom: 28px;
+.hero-text { max-width: 980px; }
+.hero-eyebrow {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--ink);
-  background: var(--bg);
-  padding: 6px 14px 6px 18px;
-  border: 1px solid var(--rule);
-  border-left: none;
-  z-index: 2;
-}
-
-.hero-text { position: relative; }
-.hero-text .eyebrow-row {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
-.hero-text .eyebrow-row hr {
-  flex: 1;
+.hero-eyebrow hr {
+  flex: 0 0 80px;
   height: 1px;
-  background: var(--ochre);
+  background: var(--accent-soft);
   border: 0;
   opacity: 0.7;
 }
-.hero-text h2.display {
+.hero-title {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(48px, 6.2vw, 96px);
-  line-height: 0.92;
-  letter-spacing: -0.01em;
-  margin: 0 0 28px;
+  font-size: clamp(80px, 14vw, 220px);
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+  text-shadow: 0 6px 40px rgba(0,0,0,0.4);
+}
+.hero-title .l1 { display: block; }
+.hero-title .l2 {
+  display: block;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--accent-soft);
+  margin-left: 0.15em;
+}
+.hero-meta {
+  margin-top: 28px;
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.hero-meta .sep { color: var(--accent-soft); }
+.hero-meta .album {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--ink);
 }
-.hero-text h2.display em {
-  font-weight: 700;
-  color: var(--ochre-deep);
+.hero-right {
+  text-align: right;
+  padding-bottom: 8px;
 }
-.hero-text p.lede {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 22px;
-  line-height: 1.55;
-  font-weight: 400;
-  color: var(--ink-2);
-  max-width: 46ch;
-  margin: 0 0 40px;
-}
-.hero-text .ctas {
+.hero-right .ctas {
   display: flex;
-  gap: 14px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 8px;
+  opacity: 0.7;
+}
+.scroll-cue .line {
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(180deg, var(--accent-soft), transparent);
+  animation: cue 2.2s ease-in-out infinite;
+}
+@keyframes cue {
+  0%, 100% { transform: scaleY(1); transform-origin: top; opacity: 0.4; }
+  50%      { transform: scaleY(1); transform-origin: top; opacity: 1; }
 }
 .btn {
   display: inline-flex;
@@ -1675,23 +1722,23 @@ section.highlights {
   border-top: 1px dashed var(--rule);
 }
 
-/* ─────────────────────────────────────────────────────── live */
+/* ─────────────────────────────────────────────────────── live — cream island */
 section.live {
   padding: 140px 40px;
-  background: #0E1C25;
-  color: #F3D9B7;
+  background: #EFE3CB;
+  color: #1A120E;
   position: relative;
   overflow: hidden;
 }
 section.live::before {
-  /* let grain through but darker */
+  /* paper grain on the cream */
   content: "";
   position: absolute;
   inset: 0;
   background-image: var(--paper-url);
   background-size: 800px;
-  mix-blend-mode: overlay;
-  opacity: 0.18;
+  mix-blend-mode: multiply;
+  opacity: 0.30;
   pointer-events: none;
 }
 .live-inner { max-width: 1400px; margin: 0 auto; position: relative; }
@@ -1699,11 +1746,11 @@ section.live::before {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-top: 1px solid rgba(243,217,183,0.4);
+  border-top: 1px solid rgba(26,18,14,0.30);
   padding-top: 18px;
   margin-bottom: 64px;
 }
-.live-head .left .eyebrow { color: var(--blush); }
+.live-head .left .eyebrow { color: oklch(0.40 0.13 35); }
 .live-head h3 {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
@@ -1711,17 +1758,17 @@ section.live::before {
   font-size: clamp(40px, 4.6vw, 64px);
   margin: 18px 0 0;
   line-height: 0.95;
-  color: #F3D9B7;
+  color: #1A120E;
 }
 .live-head h3 em {
   font-weight: 700;
-  color: var(--blush);
+  color: oklch(0.40 0.13 35);
 }
 .live-head .right {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 17px;
-  color: #C7B79F;
+  color: #6F5A47;
   max-width: 36ch;
   text-align: right;
 }
@@ -1730,12 +1777,14 @@ section.live::before {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
+  max-width: 70%;
+  margin: 0 auto;
 }
 .gallery figure {
   margin: 0;
   position: relative;
   overflow: hidden;
-  background: #15303B;
+  background: #E2D2B2;
   aspect-ratio: 1 / 1;
 }
 .gallery figure img {
@@ -1753,12 +1802,12 @@ section.live::before {
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.18em;
-  color: #F3D9B7;
+  color: #EFE3CB;
   text-transform: uppercase;
-  background: rgba(14,28,37,0.62);
+  background: rgba(26,18,14,0.72);
   backdrop-filter: blur(4px);
   padding: 5px 10px;
-  border: 1px solid rgba(243,217,183,0.2);
+  border: 1px solid rgba(239,227,203,0.2);
 }
 
 .g-a { grid-column: span 1; }
@@ -1778,15 +1827,15 @@ section.live::before {
   align-items: center;
   margin-top: 48px;
   padding-top: 22px;
-  border-top: 1px solid rgba(243,217,183,0.2);
+  border-top: 1px solid rgba(26,18,14,0.22);
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  color: #C7B79F;
+  color: #6F5A47;
 }
 .live-foot .quote {
   font-size: 22px;
   max-width: 50ch;
-  color: #F3D9B7;
+  color: #1A120E;
 }
 
 /* ─────────────────────────────────────────────────────── discography */
@@ -2030,11 +2079,12 @@ section.venues {
   color: var(--ink-mute);
 }
 
-/* ─────────────────────────────────────────────────────── media */
+/* ─────────────────────────────────────────────────────── media — cream island */
 section.media {
   padding: 100px 40px 140px;
   position: relative;
-  background: var(--bg-deep);
+  background: #EFE3CB;
+  color: #1A120E;
 }
 .media-inner { max-width: 1180px; margin: 0 auto; }
 .media-list {
@@ -2048,14 +2098,14 @@ section.media {
   gap: 18px;
   align-items: baseline;
   padding: 18px 0;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid rgba(26,18,14,0.18);
   position: relative;
 }
 .media-item .date {
   font-family: "IBM Plex Mono", monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
-  color: var(--ochre-deep);
+  color: oklch(0.40 0.13 35);
 }
 .media-item .content {
   display: flex;
@@ -2067,28 +2117,37 @@ section.media {
   font-style: italic;
   font-weight: 500;
   font-size: 24px;
-  color: var(--ink);
+  color: #1A120E;
   line-height: 1.1;
   text-decoration: none;
   transition: color 0.2s;
 }
 .media-item a.title:hover {
-  color: var(--ochre-deep);
+  color: oklch(0.40 0.13 35);
 }
 .media-item .publication {
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--ink-mute);
+  color: #6F5A47;
   text-transform: uppercase;
 }
+/* media section heading override (sits in the cream island) */
+section.media .section-head,
+section.media .section-head h3,
+section.media .section-head .left,
+section.media .section-head .right { color: #1A120E; border-color: rgba(26,18,14,0.22); }
+section.media .section-head h3 em,
+section.media .section-num,
+section.media .eyebrow { color: oklch(0.40 0.13 35); }
 
-/* ─────────────────────────────────────────────────────── footer */
+/* ─────────────────────────────────────────────────────── footer — smoke */
 footer {
   padding: 60px 40px 36px;
-  background: var(--ink);
-  color: #C7B79F;
+  background: var(--bg-deep);
+  color: var(--ink-2);
   position: relative;
+  border-top: 1px solid var(--rule-soft);
 }
 footer::before {
   content: "";
@@ -2113,14 +2172,14 @@ footer::before {
   font-style: italic;
   font-weight: 700;
   font-size: 56px;
-  color: #F3D9B7;
+  color: var(--ink);
   letter-spacing: 0.02em;
   line-height: 1;
 }
 .foot-inner .brand-large + p {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  color: #C7B79F;
+  color: var(--ink-2);
   max-width: 36ch;
   margin-top: 18px;
 }
@@ -2138,20 +2197,20 @@ footer::before {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 18px;
-  color: #F3D9B7;
+  color: var(--ink);
 }
-.foot-col a:hover { color: var(--blush); }
+.foot-col a:hover { color: var(--accent-soft); }
 .foot-base {
   max-width: 1180px;
   margin: 60px auto 0;
   padding-top: 22px;
-  border-top: 1px solid rgba(243,217,183,0.2);
+  border-top: 1px solid var(--rule-soft);
   display: flex;
   justify-content: space-between;
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: #8E7F69;
+  color: var(--ink-mute);
   text-transform: uppercase;
   position: relative;
 }
@@ -2214,9 +2273,9 @@ footer::before {
   text-transform: uppercase;
   position: relative;
 }
-.tweaks .sw[data-v="parchment"] { background: linear-gradient(135deg, #E1D2BF 50%, #855733 50%); }
-.tweaks .sw[data-v="midnight"]  { background: linear-gradient(135deg, #0E1C25 50%, #FB3199 50%); color: #F3D9B7;}
-.tweaks .sw[data-v="bruxist"]   { background: linear-gradient(135deg, #F3D9B7 50%, #FB3199 50%); }
+.tweaks .sw[data-v="smoke"]     { background: linear-gradient(135deg, #15100E 50%, #D4A56F 50%); color: #E8DCC3;}
+.tweaks .sw[data-v="parchment"] { background: linear-gradient(135deg, #EFE3CB 50%, #6E3B1E 50%); color: #1A120E;}
+.tweaks .sw[data-v="fog"]       { background: linear-gradient(135deg, #161B1F 50%, #C9B488 50%); color: #E6E7DF;}
 .tweaks .sw.active { border-color: var(--ink); }
 .tweaks .toggle {
   display: flex;
@@ -2245,7 +2304,9 @@ footer::before {
 
 /* ─────────────────────────────────────────────────────── responsive */
 @media (max-width: 1000px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; padding-bottom: 48px; }
+  .hero-right { text-align: left; padding-bottom: 0; }
+  .hero-right .ctas { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
   .specs { grid-template-columns: repeat(2, 1fr); }
   .tracklist { grid-template-columns: 1fr; gap: 48px; }
   .hl-grid { grid-template-columns: 1fr; }
@@ -2297,18 +2358,18 @@ footer::before {
 <body data-grain="on">
 
 <!-- ─────────────────── nav -->
-<nav class="top">
-  <div class="brand">
+<nav class="top" id="nav">
+  <a class="brand" href="#top">
     Sweet Slacks
-    <span class="small">A Place That We Call Home — out now</span>
-  </div>
+    <span class="by">A Place That We Call Home · Out Now</span>
+  </a>
   <ul>
     <li><a href="#highlights">Songs</a></li>
     <li><a href="#live">Live</a></li>
     <li><a href="#discography">Discography</a></li>
     <li><a href="#venues">Shows</a></li>
     <li><a href="#media">Media</a></li>
-    <li><a href="https://sweetslacks.bandcamp.com" target="_blank" rel="noopener">
+    <li><a class="bc" href="https://sweetslacks.bandcamp.com" target="_blank" rel="noopener">
       <i class="fa-brands fa-bandcamp" style="font-size:14px;opacity:0.7;margin-right:5px;"></i>
       Bandcamp
     </a></li>
@@ -2316,34 +2377,32 @@ footer::before {
 </nav>
 
 <!-- ─────────────────── hero -->
-<section class="hero">
+<section class="hero" id="top">
+  <div class="hero-photo">
+    <img src="images/16fefcba-cf91-4ad9-97cf-36933a11856d.jpg" alt="Sweet Slacks live at Chess Club" />
+    <div class="grain"></div>
+  </div>
+
   <div class="hero-inner">
-    <div class="hero-art">
-      <img class="cover" src="images/bb1998b9-d854-4adf-a9de-221b8c6ad0e4.png" alt="A Place That We Call Home — cover art">
-      <div class="meta">
-        <h1>A&nbsp;Place&nbsp;That&nbsp;We&nbsp;Call&nbsp;Home</h1>
-        <span class="by">by Sweet Slacks</span>
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <hr/>
+        <span>New LP · Out Now · Spring 2025</span>
       </div>
-      <div class="vinyl-tab">VHoHV·001 · 45 RPM · LP</div>
+      <h1 class="hero-title">
+        <span class="l1">Sweet</span>
+        <span class="l2">Slacks.</span>
+      </h1>
+      <div class="hero-meta">
+        <span>Austin · Texas</span>
+        <span class="sep">/</span>
+        <span>Four-Piece, Loud</span>
+        <span class="sep">/</span>
+        <span class="album">A Place That We Call Home</span>
+      </div>
     </div>
 
-    <div class="hero-text">
-      <div class="eyebrow-row">
-        <span class="eyebrow">New LP · Out Now · 2025</span>
-        <hr>
-      </div>
-      <h2 class="display">
-        Twelve&nbsp;songs<br>
-        about <em>the rooms</em><br>
-        we keep coming back to.
-      </h2>
-      <p class="lede">
-        Sweet Slacks is a four-piece alternative rock band out of Austin, Texas.
-        Their debut full-length <em>A Place That We Call Home</em> was written,
-        performed and produced by the band at T-Bone’s Tone Zone — wired
-        up, mic'd close, and finished in the dark.
-      </p>
-
+    <div class="hero-right">
       <div class="ctas">
         <a class="btn" href="https://sweetslacks.bandcamp.com/album/a-place-that-we-call-home" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 19l6-14h12l-6 14H3z"></path></svg>
@@ -2354,14 +2413,12 @@ footer::before {
           Hear three songs
         </a>
       </div>
-
-      <dl class="specs">
-        <div><dt>Released</dt><dd>Spring 2025</dd></div>
-        <div><dt>Format</dt><dd>12" LP · Digital</dd></div>
-        <div><dt>Catalog</dt><dd>VHoHV·001</dd></div>
-        <div><dt>Runtime</dt><dd>42 minutes</dd></div>
-      </dl>
     </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>scroll</span>
+    <span class="line"></span>
   </div>
 </section>
 
@@ -2434,7 +2491,7 @@ footer::before {
 
     <div class="live-foot">
       <div class="quote">“Who do you know in the band? I just was walking by and it sounded great." - Random Dude</div>
-      <a class="btn ghost" style="border-color: rgba(243,217,183,0.5); color: #F3D9B7;" href="#venues">See where we've played →</a>
+      <a class="btn ghost" style="border-color: rgba(26,18,14,0.35); color: #1A120E;" href="#venues">See where we've played →</a>
     </div>
   </div>
 </section>
@@ -2461,7 +2518,7 @@ footer::before {
       <div class="release-item">
         <a class="release current" href="https://sweetslacks.bandcamp.com/album/a-place-that-we-call-home" target="_blank" rel="noopener">
           <div class="cover">
-            <img src="images/bb1998b9-d854-4adf-a9de-221b8c6ad0e4.png" alt="A Place That We Call Home">
+            <img src="images/a-place-that-we-call-home.png" alt="A Place That We Call Home">
             <div class="corner">
               <span class="t">A Place That We Call Home</span>
               <span class="b">by Sweet Slacks</span>
@@ -2692,8 +2749,8 @@ footer::before {
     <div class="foot-col">
       <h6>Contact</h6>
       <ul>
-        <li><a href="mailto:sweetslacks@vhohv.com">Booking</a></li>
-        <li><a href="mailto:press@vhohv.com">Press</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#3c4f4b5959484f505d5f574f7c4a5453544a125f5351">Booking</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#2d5d5f485e5e6d5b4542455b034e4240">Press</a></li>
         <li><a href="https://instagram.com/sweetslacksmusic" target="_blank" rel="noopener">Instagram ↗</a></li>
         <li><a href="#" target="_blank" rel="noopener">Mailing list</a></li>
       </ul>
@@ -2711,9 +2768,9 @@ footer::before {
   <div class="field">
     <label class="lbl">Palette</label>
     <div class="swatches">
+      <div class="sw" data-v="smoke">Smoke</div>
       <div class="sw" data-v="parchment">Parchment</div>
-      <div class="sw" data-v="midnight">Midnight</div>
-      <div class="sw" data-v="bruxist">Bruxist</div>
+      <div class="sw" data-v="fog">Fog</div>
     </div>
   </div>
   <div class="field">
@@ -2722,7 +2779,7 @@ footer::before {
 </div>
 
 <!-- bandcamp wave bars -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   document.querySelectorAll('.hl-card .wave').forEach(w => {
     const seed = Math.random()*1000;
@@ -2782,5 +2839,20 @@ footer::before {
 </script>
 
 
+
+<!-- nav scroll state -->
+<script>
+(function(){
+  const nav  = document.getElementById('nav');
+  const hero = document.querySelector('section.hero');
+  if (!nav || !hero) return;
+  const onScroll = () => {
+    const past = window.scrollY > hero.offsetHeight - 80;
+    nav.classList.toggle('scrolled', past);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 
 </body></html>
