@@ -1833,7 +1833,7 @@ section.live::before {
   color: #6F5A47;
 }
 .live-foot .quote {
-  font-size: 22px;
+  font-size: 44px;
   max-width: 50ch;
   color: #1A120E;
 }
@@ -2077,6 +2077,66 @@ section.venues {
   font-style: italic;
   font-size: 16px;
   color: var(--ink-mute);
+}
+.venue.upcoming {
+  background: rgba(203, 138, 61, 0.08);
+  border: 1px solid var(--ochre-deep);
+  border-radius: 4px;
+  padding: 22px 16px;
+  margin: 8px -16px;
+}
+.venue.upcoming .date {
+  font-weight: 600;
+  color: var(--ochre-deep);
+  position: relative;
+}
+.venue.upcoming .date::before {
+  content: "▶";
+  position: absolute;
+  left: -14px;
+  color: var(--ochre-deep);
+  font-size: 10px;
+}
+.venue.upcoming .place {
+  font-weight: 600;
+  color: var(--ink);
+}
+.venue .upcoming-tag {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--ochre-deep);
+  background: rgba(203, 138, 61, 0.15);
+  border: 1px solid var(--ochre-deep);
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 12px;
+  vertical-align: middle;
+  font-style: normal;
+}
+.venue .rip-tag {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--ink-mute);
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 12px;
+  vertical-align: middle;
+  font-style: normal;
+  opacity: 0.7;
+}
+.venue .rip-tag::before {
+  content: "⚰";
+  margin-right: 6px;
+  font-style: normal;
+  font-size: 16px;
 }
 
 /* ─────────────────────────────────────────────────────── media — cream island */
@@ -2486,7 +2546,7 @@ footer::before {
     </div>
 
     <div class="live-foot">
-      <div class="quote">“Who do you know in the band? I just was walking by and it sounded great." - Random Dude</div>
+      <div class=”quote”>Steve: “Who do you know in the band?”<br>Random Dude: “I just was walking by and it sounded great, so I bought a ticket”</div>
       <a class="btn ghost" style="border-color: rgba(26,18,14,0.35); color: #1A120E;" href="#venues">See where we've played →</a>
     </div>
   </div>
@@ -2650,7 +2710,7 @@ footer::before {
   <div class="venues-inner">
     <div class="section-head">
       <div class="left">
-        <h3>Rooms we've <em>turned up</em> in.</h3>
+        <h3>Upcoming and <em>past gigs</em>.</h3>
       </div>
       <div class="right">
         A non-exhaustive list. Mostly Austin, occasionally elsewhere. If you
@@ -2659,18 +2719,18 @@ footer::before {
     </div>
 
     <div class="venue-list">
-      <div class="venue"><span class="date">2025·05</span><span class="place">Chess Club<small>Record release · two nights</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2025·04</span><span class="place">Hotel Vegas<small>Front bar</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2025·03</span><span class="place">Mohawk<small>Inside · w/ Friends</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2025·02</span><span class="place">The Continental Club<small>Gallery upstairs</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2024·11</span><span class="place">Hole in the Wall<small>Late set</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2024·10</span><span class="place">Empire Control Room<small>Garage</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2024·09</span><span class="place">Cheer Up Charlies<small>Patio stage</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2024·07</span><span class="place">The Lost Well<small>Bruxist single release</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2024·05</span><span class="place">Beerland<small>The very last show</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2024·03</span><span class="place">13th Floor<small>SXSW unofficial</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2024·02</span><span class="place">Valhalla<small>Pre-mastering tour</small></span><span class="city">Austin TX</span></div>
-      <div class="venue"><span class="date">2023·11</span><span class="place">Far Out Lounge<small>Old Friend EP release</small></span><span class="city">Austin TX</span></div>
+      <div class="venue upcoming"><span class="date">2026·07·18</span><span class="place">Knomad<span class="upcoming-tag">UPCOMING</span><small>w/ Wheel Workers & Miss Guilty</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2026·03·07</span><span class="place">Chess Club<small>w/ Gentlemen Rogues & Sneaky Sneaky</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2024·11·02</span><span class="place">Independence Brewery<span class="rip-tag">RIP</span><small>w/ Lonesome Ranch & Bad Thrillers</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2023·09·06</span><span class="place">Coral Snake<span class="rip-tag">RIP</span><small>w/ Fuzz Lightyear & Jay Satellite</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2023·07·29</span><span class="place">Hole in the Wall<small>w/ Ram Vela and the Easy Targets & Jay Satellite</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2023·07·25</span><span class="place">Coral Snake<span class="rip-tag">RIP</span><small>w/ Still Shadow & Kat</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2023·04·06</span><span class="place">13th Floor<small>w/ Ragabash & Mr. Kat</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2019·10·05</span><span class="place">Dozen Street<span class="rip-tag">RIP</span><small>w/ Ram Vela and the Easy Targets & It's a Death Trap</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2019·01·20</span><span class="place">Sahara Lounge<small>w/ Eggdog & Slideshow</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2018·10·08</span><span class="place">Love Goat<small>First show · w/ Economy Island & Jay Satellite</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2018·09·18</span><span class="place">Carousel Lounge<small>w/ Eggdog</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2018·09·08</span><span class="place">Love Goat</span><span class="city">Austin TX</span></div>
     </div>
   </div>
 </section>
