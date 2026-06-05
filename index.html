@@ -1289,6 +1289,9 @@ a:hover { color: var(--ochre-deep); }
   color: var(--ink-mute);
   margin: 0 6px;
 }
+.gig-banner .gig-line + .gig-line {
+  margin-top: 4px;
+}
 @media (max-width: 768px) {
   .gig-banner {
     top: 68px;
@@ -2963,7 +2966,7 @@ footer::before {
   var city = upcoming.querySelector('.city').textContent.trim();
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var pretty = months[gigDate.getMonth()] + ' ' + gigDate.getDate() + ', ' + gigDate.getFullYear();
-  banner.innerHTML = '<span class="gig-label">Next Show</span><span class="gig-details">' + pretty + '<span class="gig-sep">·</span>' + venue + '<span class="gig-sep">·</span>' + city + '</span><a href="#venues">Details ↓</a>';
+  banner.innerHTML = '<div class="gig-line"><span class="gig-label">Next Show</span><span class="gig-details">' + pretty + '<span class="gig-sep">·</span>' + venue + '<span class="gig-sep">·</span>' + city + '</span></div><div class="gig-line"><a href="#venues">Details ↓</a></div>';
   banner.classList.add('visible');
 })();
 </script>
