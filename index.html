@@ -1251,31 +1251,44 @@ a:hover { color: var(--ochre-deep); }
 /* ─────────────────────────────────────────────────────── gig banner */
 .gig-banner {
   display: none;
-  background: var(--ink, #1A120E);
-  color: #fff;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--rule);
   text-align: center;
-  padding: 10px 20px;
-  font-family: var(--sans, sans-serif);
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  position: relative;
-  z-index: 1000;
+  padding: 14px 24px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 .gig-banner.visible { display: block; }
 .gig-banner a {
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
+  margin-left: 8px;
+  transition: color 0.2s;
 }
-.gig-banner .gig-date {
+.gig-banner a:hover { color: var(--accent-soft); }
+.gig-banner .gig-label {
+  color: var(--accent);
   font-weight: 700;
-  margin-right: 6px;
+  margin-right: 10px;
 }
-.gig-banner .gig-venue {
-  opacity: 0.85;
+.gig-banner .gig-details {
+  color: var(--ink-2);
+}
+.gig-banner .gig-sep {
+  color: var(--ink-mute);
+  margin: 0 6px;
 }
 @media (max-width: 600px) {
-  .gig-banner { font-size: 12px; padding: 8px 14px; }
+  .gig-banner {
+    font-size: 11px;
+    padding: 12px 16px;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+  }
 }
 
 /* ─────────────────────────────────────────────────────── nav */
@@ -2472,9 +2485,6 @@ footer::before {
 </head>
 <body data-grain="on">
 
-<!-- ─────────────────── gig banner -->
-<div class="gig-banner" id="gig-banner"></div>
-
 <!-- ─────────────────── nav -->
 <nav class="top" id="nav">
   <a class="brand" href="#top">
@@ -2536,6 +2546,9 @@ footer::before {
     <span class="line"></span>
   </div>
 </section>
+
+<!-- ─────────────────── gig banner -->
+<div class="gig-banner" id="gig-banner"></div>
 
 <!-- ─────────────────── discography -->
 <section class="discography" id="discography">
@@ -2937,7 +2950,7 @@ footer::before {
   var city = upcoming.querySelector('.city').textContent.trim();
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var pretty = months[gigDate.getMonth()] + ' ' + gigDate.getDate() + ', ' + gigDate.getFullYear();
-  banner.innerHTML = '<span class="gig-date">Next show: ' + pretty + '</span><span class="gig-venue"> — ' + venue + ', ' + city + '</span> <a href="#venues">Details ↓</a>';
+  banner.innerHTML = '<span class="gig-label">Next Show</span><span class="gig-details">' + pretty + '<span class="gig-sep">·</span>' + venue + '<span class="gig-sep">·</span>' + city + '</span><a href="#venues">Details ↓</a>';
   banner.classList.add('visible');
 })();
 </script>
