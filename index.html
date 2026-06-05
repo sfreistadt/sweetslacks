@@ -2758,7 +2758,7 @@ footer::before {
     </div>
 
     <div class="venue-list">
-      <div class="venue upcoming" id="next-show"><span class="date">2026·07·18</span><span class="place">Knomad<span class="upcoming-tag">UPCOMING</span><small>w/ Wheel Workers & Miss Guilty</small></span><span class="city">Austin TX</span></div>
+      <div class="venue upcoming"><span class="date">2026·07·18</span><span class="place">Knomad<span class="upcoming-tag">UPCOMING</span><small>w/ Wheel Workers & Miss Guilty</small></span><span class="city">Austin TX</span></div>
       <div class="venue"><span class="date">2026·03·07</span><span class="place">Chess Club<small>w/ Gentlemen Rogues & Sneaky Sneaky</small></span><span class="city">Austin TX</span></div>
       <div class="venue"><span class="date">2024·11·02</span><span class="place">Independence Brewery<span class="rip-tag">RIP</span><small>w/ Lonesome Ranch & Bad Thrillers</small></span><span class="city">Austin TX</span></div>
       <div class="venue"><span class="date">2023·09·06</span><span class="place">Coral Snake<span class="rip-tag">RIP</span><small>w/ Fuzz Lightyear & Jay Satellite</small></span><span class="city">Austin TX</span></div>
@@ -2963,7 +2963,7 @@ footer::before {
   var city = upcoming.querySelector('.city').textContent.trim();
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var pretty = months[gigDate.getMonth()] + ' ' + gigDate.getDate() + ', ' + gigDate.getFullYear();
-  banner.innerHTML = '<span class="gig-label">Next Show</span><span class="gig-details">' + pretty + '<span class="gig-sep">·</span>' + venue + '<span class="gig-sep">·</span>' + city + '</span><a href="#next-show">Details ↓</a>';
+  banner.innerHTML = '<span class="gig-label">Next Show</span><span class="gig-details">' + pretty + '<span class="gig-sep">·</span>' + venue + '<span class="gig-sep">·</span>' + city + '</span><a href="#venues">Details ↓</a>';
   banner.classList.add('visible');
 })();
 </script>
