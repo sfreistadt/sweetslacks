@@ -1248,6 +1248,36 @@ a:hover { color: var(--ochre-deep); }
   border: 0;
 }
 
+/* ─────────────────────────────────────────────────────── gig banner */
+.gig-banner {
+  display: none;
+  background: var(--ink, #1A120E);
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-family: var(--sans, sans-serif);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1000;
+}
+.gig-banner.visible { display: block; }
+.gig-banner a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.gig-banner .gig-date {
+  font-weight: 700;
+  margin-right: 6px;
+}
+.gig-banner .gig-venue {
+  opacity: 0.85;
+}
+@media (max-width: 600px) {
+  .gig-banner { font-size: 12px; padding: 8px 14px; }
+}
+
 /* ─────────────────────────────────────────────────────── nav */
 nav.top {
   position: absolute;
@@ -2442,6 +2472,9 @@ footer::before {
 </head>
 <body data-grain="on">
 
+<!-- ─────────────────── gig banner -->
+<div class="gig-banner" id="gig-banner"></div>
+
 <!-- ─────────────────── nav -->
 <nav class="top" id="nav">
   <a class="brand" href="#top">
@@ -2889,6 +2922,23 @@ footer::before {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+})();
+</script>
+
+<script>
+(function() {
+  var banner = document.getElementById('gig-banner');
+  var upcoming = document.querySelector('.venue.upcoming');
+  if (!upcoming || !banner) return;
+  var raw = upcoming.querySelector('.date').textContent.replace(/·/g, '-');
+  var gigDate = new Date(raw + 'T00:00:00');
+  if (gigDate < new Date(new Date().toDateString())) return;
+  var venue = upcoming.querySelector('.place').childNodes[0].textContent.trim();
+  var city = upcoming.querySelector('.city').textContent.trim();
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var pretty = months[gigDate.getMonth()] + ' ' + gigDate.getDate() + ', ' + gigDate.getFullYear();
+  banner.innerHTML = '<span class="gig-date">Next show: ' + pretty + '</span><span class="gig-venue"> — ' + venue + ', ' + city + '</span> <a href="#venues">Details ↓</a>';
+  banner.classList.add('visible');
 })();
 </script>
 
