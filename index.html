@@ -2761,7 +2761,7 @@ footer::before {
     </div>
 
     <div class="venue-list">
-      <div class="venue upcoming"><span class="date">2026·07·18</span><span class="place">Knomad<span class="upcoming-tag">UPCOMING</span><small>w/ Wheel Workers & Miss Guilty</small></span><span class="city">Austin TX</span></div>
+      <div class="venue"><span class="date">2026·07·18</span><span class="place">Knomad<small>w/ Wheel Workers & Miss Guilty</small></span><span class="city">Austin TX</span></div>
       <div class="venue"><span class="date">2026·03·07</span><span class="place">Chess Club<small>w/ Gentlemen Rogues & Sneaky Sneaky</small></span><span class="city">Austin TX</span></div>
       <div class="venue"><span class="date">2024·11·02</span><span class="place">Independence Brewery<span class="rip-tag">RIP</span><small>w/ Lonesome Ranch & Bad Thrillers</small></span><span class="city">Austin TX</span></div>
       <div class="venue"><span class="date">2023·09·06</span><span class="place">Coral Snake<span class="rip-tag">RIP</span><small>w/ Fuzz Lightyear & Jay Satellite</small></span><span class="city">Austin TX</span></div>
@@ -2951,6 +2951,31 @@ footer::before {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+})();
+</script>
+
+<script>
+(function() {
+  var venues = document.querySelectorAll('.venue-list .venue');
+  var today = new Date(new Date().toDateString());
+  venues.forEach(function(v) {
+    var dateEl = v.querySelector('.date');
+    if (!dateEl) return;
+    var raw = dateEl.textContent.replace(/·/g, '-');
+    var gigDate = new Date(raw + 'T00:00:00');
+    var isUpcoming = gigDate >= today;
+    v.classList.toggle('upcoming', isUpcoming);
+    var placeEl = v.querySelector('.place');
+    var tag = placeEl.querySelector('.upcoming-tag');
+    if (isUpcoming && !tag) {
+      tag = document.createElement('span');
+      tag.className = 'upcoming-tag';
+      tag.textContent = 'UPCOMING';
+      placeEl.insertBefore(tag, placeEl.querySelector('small') || null);
+    } else if (!isUpcoming && tag) {
+      tag.remove();
+    }
+  });
 })();
 </script>
 
